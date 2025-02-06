@@ -1,0 +1,51 @@
+name: Run Playwright Tests in Docker
+
+on: 
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
+    - name: Install Docker
+      run: sudo apt-get install docker.io
+
+    - name: Build Docker Container
+      run: 
+        cd docker
+        ./build.sh
+        ./start.sh
+
+    - name: Install dependencies inside Docker 
+      run: 
+        docker exec playwright-container npm install
+        docker exec playwright-container npm install playwright
+
+    - name: Run Playwright tests inside Docker
+      run:
+        docker exec -it playwright-container npx playwright test --reporter=html
+
+    - name: Upload Playwright-test-report
+      uses: actions/upload-artifact@v2
+      with:
+        name: playwright-test-report
+        path: playwright-report/
+
+    - name: Add Playwright report to PR
+      uses: marocchino/github-action-pr-comment@v2
+      with:
+        message: "Playwright tests completed! Test report can be found through: playwright-report/index.html"

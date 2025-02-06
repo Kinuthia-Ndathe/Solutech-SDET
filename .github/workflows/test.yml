@@ -37,15 +37,22 @@ jobs:
 
     - name: Run Playwright tests inside Docker
       run:
+        ./connect.sh
+        cd /app
         docker exec -it playwright-container npx playwright test --reporter=html
 
+    - name: Stop Docker Container 
+      run: 
+        cd docker
+        ./stop.sh
+
     - name: Upload Playwright-test-report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: playwright-test-report
         path: playwright-report/
 
     - name: Add Playwright report to PR
-      uses: marocchino/github-action-pr-comment@v2
+      uses: mshick/add-pr-comment@v2
       with:
         message: "Playwright tests completed! Test report can be found through: playwright-report/index.html"

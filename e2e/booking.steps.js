@@ -7,7 +7,7 @@ let browser, page;
 Given('I am on the home page', async function () {
     browser = await chromium.launch();
     page = await browser.newPage();
-    await page.goto('http://localhost:8080/booking');
+    await page.goto('http://localhost:80000/booking');
 });
 
 When('I select a tour', async function () {
@@ -36,7 +36,7 @@ Then('I should see a booking confirmation', async function () {
 Given('I am an admin & logged in', async function () {
     browser = await chromium.launch();
     page = await browser.newPage();
-    await page.goto('http://localhost:8080/login');
+    await page.goto('http://localhost:8000/login');
     await page.fill('input[name="username"]', 'TourAdmin');
     await page.fill('input[name="password"]', 'TourAdminpassword');
     await page.click('input[name="login"]');
@@ -44,7 +44,7 @@ Given('I am an admin & logged in', async function () {
 });
 
 When('I add a new tour with available slots, pricing, descriptions, and destinations', async function () {
-    await page.goto('http://localhost:8080/admin/tours'); 
+    await page.goto('http://localhost:8000/admin/tours'); 
     await page.click('button[name="Add Tour"]');
     await page.fill('input[name="tour-name"]', 'New Tour');
     await page.fill('input[name="slots"]', '10');
@@ -61,7 +61,7 @@ Then('the tour should be available for booking', async function () {
 });
 
 When('I view all bookings', async function () {
-    await page.goto('http://localhost:8080/admin/bookings');
+    await page.goto('http://localhost:8000/admin/bookings');
 });
 
 Then('I should see a list of all bookings made by users', async function () {
@@ -71,7 +71,7 @@ Then('I should see a list of all bookings made by users', async function () {
 });
 
 When('I view all tickets', async function () {
-    await page.goto('http://localhost:8080/admin/tickets');
+    await page.goto('http://localhost:8000/admin/tickets');
 });
 
 Then('I should see all tickets generated from bookings', async function () {

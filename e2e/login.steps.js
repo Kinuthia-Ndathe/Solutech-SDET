@@ -8,7 +8,7 @@ let browser, page; //variable declaration
 Given('the user is on the login page', async function () {
     browser = await chromium.launch();
     page = await browser.newPage();
-    await page.goto('http://localhost:8080/login');
+    await page.goto('http://localhost:8000/login');
 });
 
 When('the user enters invalid credentials', async function () {

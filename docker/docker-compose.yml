@@ -1,7 +1,6 @@
 ###############################################################################
 #                          Solutech Booking Challenge                         #
 ###############################################################################
-version: '3.1'
 services:
     app:
         container_name: booking-app
@@ -19,7 +18,7 @@ services:
             - mailhog
     php-fpm:
         container_name: booking-php-fpm
-        build: docker/php-fpm
+        build: ./php-fpm
         working_dir: /application
         volumes:
             - '.:/application'

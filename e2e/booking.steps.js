@@ -37,8 +37,8 @@ Given('I am an admin & logged in', async function () {
     browser = await chromium.launch();
     page = await browser.newPage();
     await page.goto('http://localhost:8000/login');
-    await page.fill('input[name="username"]', 'TourAdmin');
-    await page.fill('input[name="password"]', 'TourAdminpassword');
+    await page.fill('input[name="username"]', 'admin@account.com');
+    await page.fill('input[name="password"]', 'password');
     await page.click('input[name="login"]');
     await page.waitForNavigation();
 });

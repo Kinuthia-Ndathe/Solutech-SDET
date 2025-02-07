@@ -28,6 +28,7 @@ jobs:
     - name: Build Docker Container
       run: |
         cd docker
+        chmod +x build.sh start.sh
         ./build.sh
         ./start.sh
 

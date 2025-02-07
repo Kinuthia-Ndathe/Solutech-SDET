@@ -26,7 +26,7 @@ jobs:
         curl -fsSL https://get.docker.com | sudo bash
 
     - name: Build Docker Container
-      run: 
+      run: |
         cd docker
         ./build.sh
         ./start.sh

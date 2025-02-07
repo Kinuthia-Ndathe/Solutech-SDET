@@ -25,7 +25,9 @@ services:
             - './docker/php-fpm/php-ini-overrides.ini:/etc/php/8.4/fpm/conf.d/99-overrides.ini'
             - './docker/php-fpm/php-ini-overrides.ini:/etc/php/8.4/cli/conf.d/99-overrides.ini'
             - './docker/setup:/setup'
-        command: ["/bin/sh", "-c", "npm install && tail -f /dev/null"]
+        name: Install Playwright in PHP-FPM container
+        run: |
+            docker exec booking-php-fpm npm install playwright
 
     mysql:
         container_name: booking-mysql

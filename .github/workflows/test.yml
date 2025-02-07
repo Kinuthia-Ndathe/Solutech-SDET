@@ -20,6 +20,10 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '20'
+    
+    - name: Remove conflicting packages
+      run: 
+        sudo apt-get remove docker docker-engine docker.io containerd runc
 
     - name: Install Docker
       run: sudo apt-get install docker.io

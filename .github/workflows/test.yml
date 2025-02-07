@@ -39,7 +39,7 @@ jobs:
         ./start.sh
 
     - name: Install dependencies inside Docker 
-      run: 
+      run: |
         docker exec booking-php-fpm npm install
         docker exec booking-php-fpm npm install playwright
 

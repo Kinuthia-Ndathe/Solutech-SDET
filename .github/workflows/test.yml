@@ -40,8 +40,8 @@ jobs:
 
     - name: Install dependencies inside Docker 
       run: |
-        docker exec booking-php-fpm sh -c "cd /application && npm install
-        docker exec booking-php-fpm sh -c "cd /application && npm install playwright
+        docker exec booking-php-fpm sh -c "cd /application && npm install"
+        docker exec booking-php-fpm sh -c "cd /application && npm install playwright"
 
     - name: Run Playwright tests inside Docker
       run:
